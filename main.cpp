@@ -20,6 +20,7 @@ int main(){
     Mat imgDil, imgEro; //image dialation and image erosion
 
     //-------------1.to covert image in grayscale, we can use command down below
+
     cvtColor(img, imgGray, COLOR_BGR2GRAY);
 
     //this commands will only show one window at a time
@@ -30,11 +31,13 @@ int main(){
     //https://www.programmersought.com/article/51853081107/
 
     //---------------2.now lets blurr the image
+
     GaussianBlur(img_hand, imgBlurr_hand, Size(3,3),0,0);
     GaussianBlur(img, imgBlurr, Size(3,3),0,0);
     imshow("sample image", imgBlurr_hand); 
 
     //---------------3. Edge detection with kenney edge detector
+    
     //normally its a common practice to blur image before using edge detection to only find hard edges
     Canny(imgBlurr, imgEdge, 50, 50);
     Canny(imgBlurr_hand, imgEdge_hand, 75, 75);
