@@ -40,23 +40,18 @@ int main(){
 int main(){
 
     //first like image we need to make a video object
-    string path = "sample.jpg"; //path to the video
-    VideoCapture cap(path);
+    string path = "Gossip.mp4"; //path to the video
+    VideoCapture vdo(path); //mew cap
+    Mat img; //here we are initiating the image object that will be stored in while loop with vdo content
     
     
     //since videos are series of frames we need to save all the frames and then play it one by one. 
     while(true){
     
-        
-        Mat img = imread(path); //Mat is the matrix of numbers, img is the name of that variable and imread will read the image
-
-        //to show the image we can use the command imshow - imageshow
-        //namedWindow("Sample Image", WINDOW_AUTOSIZE); - this window will match the size of the image itself
-        imshow("sample image", img); //this will now show the image but it will close automatically. 
-        //to give it some delay we need to enter the following line
-
-        waitKey(0);//this will make sure that window only closes when we press the close button
-
+        vdo.read(img); 
+        imshow("Gossip", img); //now one by one we will read frame and show it here on imshow,
+        //note we are not using waitKey(0) since we dont want to pause just play the whole video at one go
+        waitKey(50); //by changing the delay value we can change how fast or slow the video is being played
     }
 
 }
