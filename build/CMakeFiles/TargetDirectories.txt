@@ -1,0 +1,3 @@
+/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/build/CMakeFiles/rebuild_cache.dir
+/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/build/CMakeFiles/OCV_RoadMap.dir
+/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/build/CMakeFiles/edit_cache.dir
