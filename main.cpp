@@ -42,12 +42,13 @@ int main(){
 
     //--------------4.Dialate and erode, meaning decreasing or increasing thickness of edges, if they are too thin or too thick
 
-    Mat kernel = getStructuringElement(MORPH_RECT, Size(2,2)); //we are making a karnel - or a small matrix that will be used
-    //in dialation of the image, with bigger size we will have much more dialation
+    Mat kernel = getStructuringElement(MORPH_RECT, Size(3,3)); //we are making a karnel - or a small matrix that will be used
+    //in dialation of the image, with bigger size we will have much more dialation. Always use odd numbers to make kernel
     dilate(imgEdge_hand, imgDil, kernel); //increase the edge thickness
     imshow("sample image", imgDil); 
 
-
+    erode(imgDil, imgEro, kernel); //decrease the edge thickness
+    imshow("sample image", imgEro);
 
     waitKey(0);
 
