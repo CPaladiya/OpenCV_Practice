@@ -6,31 +6,38 @@
 using namespace cv;
 using namespace std;
 
-//---------------------------Chapter 4 : Drawings shape on image and adding texts ------------------//
+float w = 250; //width of the real card
+float h = 350; // height of the real card
+Mat matrix, imgWarp;
+
+//---------------------------Chapter 5 : Warp image ------------------//
 
 int main(){
 
-    //--------------creating blank image ------------------------//
+    string path = "Warp.png"; 
+    Mat img = imread(path); 
 
-    //Here 512 X 512 is the resolution of the image, CV_8UC3 means 8-bit color value unsinged of that would than very
-    //from 0 to  255. Here if it is 8S - signed -127 to 128 approx. and 3C means 3 Channed B, G and R
-    Mat img(512,512, CV_8UC3, Scalar(255,255,255)); //0 means no color and 255 means color with full intensity
+    //we are going to use a function that uses a floating points, here we will have group of four points of cards
+    Point2f srcPoints[4] = { {591,309},{823,349}, {518,569}, {772,626}}; // this is where currently our image is
 
-    //------creating circle on existing image -----------------//
-    circle(img, Point(256,256), 155, Scalar(255,0,0), FILLED); //first point object is center, second is radius, third is color, and
-    //fourth is thickness of the line itself. instead of thickness we can write FILLED keyword to get it filled
+    //so we have to define a new place where each consicutive point, will be placed at a conse. new location 
+    Point2f dstPints[4] = { {0.0f,0.0f},{w,0.0f}, {0.0f,h}, {w,h}}; // this is the destination points
+    // notice above we write 0.0f since its a floating point and also, w - width and h for height
 
-    //------creating rectanlge --------------------------//
-    rectangle(img, Point(10,10), Point(100,100), Scalar(255,0,0), 3); // here first and second point is xy of first point
-    //xy of diagonal point. This is different than Rect  object we saw before //Rect roi(400,200,300,300);
+    // we need a transformation matrix to find the ward. Here we will use that matrix
 
-    //---------------draw a line -----------------------//
-    line(img,Point(124,54), Point(245,54), Scalar(0,255,255),5); //for line we just have ending and starting point
+    matrix = getPerspectiveTransform(srcPoints, dstPints); //this way we will get a matrix, that can help compute the warping of 
+    //image from one position to another
 
-    //------- Adding Characters/texts------------------//
-    putText(img,"My Road", Point(124,255), FONT_ITALIC, 2, Scalar(0,0,0),4); //starting point, font, size, color and thickness
+    warpPerspective(img, imgWarp, matrix,Point(w,h));//source, dest and size of the output image
+
+    //if there is any issues, here we can add four circles on the points we selected in source files
+    for(int i = 0; i<4 ; i++){
+        circle(img, srcPoints[i], 10, Scalar(0,0,0), 5);
+    }
 
     imshow("Image",img);
+    //imshow("Image",imgWarp);
     waitKey(0);
 
 }
