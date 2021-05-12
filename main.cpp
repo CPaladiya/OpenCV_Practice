@@ -28,6 +28,7 @@ int main(){
     line(img,Point(124,54), Point(245,54), Scalar(0,255,255),5); //for line we just have ending and starting point
 
     //------- Adding Characters/texts------------------//
+    putText(img,"My Road", Point(124,255), FONT_ITALIC, 2, Scalar(0,0,0),4); //starting point, font, size, color and thickness
 
     imshow("Image",img);
     waitKey(0);
