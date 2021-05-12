@@ -6,52 +6,34 @@
 using namespace cv;
 using namespace std;
 
-//---------------------------Chapter 2 : Basic functions to operate on image ------------------//
+//---------------------------Chapter 3 : resize, crop and other basic function ------------------//
 
 int main(){
 
-    string path = "sample.jpg"; 
     string path_hand = "Hand.jpg";
-    Mat img = imread(path); 
-    Mat img_hand = imread(path_hand); 
-    Mat imgGray; // here we are defining the output image since we are not modifying the source image
-    Mat imgBlurr, imgBlurr_hand; //to create a blurred image later on
-    Mat imgEdge, imgEdge_hand; //to detect edge later on
-    Mat imgDil, imgEro; //image dialation and image erosion
-
-    //-------------1.to covert image in grayscale, we can use command down below
-
-    cvtColor(img, imgGray, COLOR_BGR2GRAY);
-
-    //this commands will only show one window at a time
-    imshow("sample image", img);
-    imshow("sample image", imgGray); 
-
-    //to show both image in a single window,follow this link,
-    //https://www.programmersought.com/article/51853081107/
-
-    //---------------2.now lets blurr the image
-
-    GaussianBlur(img_hand, imgBlurr_hand, Size(3,3),0,0);
-    GaussianBlur(img, imgBlurr, Size(3,3),0,0);
-    imshow("sample image", imgBlurr_hand); 
-
-    //---------------3. Edge detection with kenney edge detector
+    Mat img = imread(path_hand); 
+    Mat ResizeImg, CropImg;
     
-    //normally its a common practice to blur image before using edge detection to only find hard edges
-    Canny(imgBlurr, imgEdge, 50, 50);
-    Canny(imgBlurr_hand, imgEdge_hand, 75, 75);
-    imshow("sample image", imgEdge_hand); 
+    cout<< img.size()<<endl; //to know the size of existing image
+    
+    // -------------------------- resize -------------------------//
+    resize(img,ResizeImg, Size(640,480)); //this might make image croocked since we are just resizing it without
+    //concerning with aspect ratio
 
-    //--------------4.Dialate and erode, meaning decreasing or increasing thickness of edges, if they are too thin or too thick
+    //if we just want to scale it down instead then we can do something like this
+    //resize(img,ResizeImg, 0.5,0.5); this will reduce in terms of percentage over x and y axis
+    
+    imshow("Resize Image",ResizeImg);
 
-    Mat kernel = getStructuringElement(MORPH_RECT, Size(3,3)); //we are making a karnel - or a small matrix that will be used
-    //in dialation of the image, with bigger size we will have much more dialation. Always use odd numbers to make kernel
-    dilate(imgEdge_hand, imgDil, kernel); //increase the edge thickness
-    imshow("sample image", imgDil); 
+    // ----------------------------- cropping image - ROI region of interest -------------------------//
+    
+    Rect roi(400,200,300,300); //rect here is a rectangle data type, x,y and width and height are four parameters
+    // we will put this roi object into our image as the following line suggests
+    //first two is the starting point of the crop and then next two is the diagonal end point
 
-    erode(imgDil, imgEro, kernel); //decrease the edge thickness
-    imshow("sample image", imgEro);
+    CropImg = img(roi); //in this way we will be able to crop our image
+    
+    imshow("Crop Image",CropImg);
 
     waitKey(0);
 
