@@ -30,7 +30,7 @@ int main(){
     //https://www.programmersought.com/article/51853081107/
 
     //---------------2.now lets blurr the image
-    GaussianBlur(img_hand, imgBlurr_hand, Size(3,3),0,0);
+    GaussianBlur(img_hand, imgBlurr_hand, Size(3,3),0,0); //here always apply blurr to the gray image, ignore the way it is given here
     GaussianBlur(img, imgBlurr, Size(3,3),0,0);
     imshow("sample image", imgBlurr_hand); 
 

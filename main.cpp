@@ -6,51 +6,103 @@
 using namespace cv;
 using namespace std;
 
-float w = 250; //width of the real card
-float h = 350; // height of the real card
 
-//---------------------------Chapter 6 : Color detection ------------------//
+//---------------------------Chapter 7 : Shape detection ------------------//
+
+//there are two arguments, first image is the feed image that has been dilated and processed
+//second argument is image that we want to write on,- where we will write shape name
+void getContours(Mat &imgDil, Mat &img){
+
+    //here is how to define vectors of countours, they are list of points within list so a vector inside a vector of a Points
+    vector<vector<Point>> contours;
+    vector<Vec4i> hierarchy; //besically 4 integer values. However we have not used this here much in this example
+
+
+    findContours(imgDil, contours, hierarchy,RETR_LIST,CHAIN_APPROX_SIMPLE);
+
+    //this is an OCV function to draw contours - we will be writing on our main img
+    //drawContours(img,contours,-1,Scalar(255,0,255),7); //-1 says draw all contours, otherwise we can give number of which one we want to be drawn
+
+    //next we want to find area of the contour, sometimes we want to make sure the area is only 
+    //detected if it has some number of area, smaller area migh be the noise
+    //so to remove the noise of small areas we will run for loop througfh all the contours
+
+    for (int i = 0; i< contours.size(); i++){
+        
+        double area = contourArea(contours[i]);
+        cout << "Area of the i "<< i << " contour : "<< area << endl;
+        //next we can create a filter where we only identify area if it is more than 1000
+
+        //this will be exacly like contours, but it will only have corner points
+        vector<vector<Point>> conPoly(contours.size());
+        //creating a bounding box point values using conPoly
+        vector<Rect> boundRect(contours.size()); //note the data type here
+
+        //object type
+        string objType;
+
+        if (area > 1000){
+            
+            float peri = arcLength(contours[i], true); //this will be the bounding box around the object
+
+            //now we will find a howmany corners do they have, if its 3 - triange, 4 - rect , alot - circle
+            approxPolyDP(contours[i], conPoly[i], 0.02*peri, true);
+            
+            //this will draw the contour
+            //drawContours(img,contours,i,Scalar(255,0,255),7);//now, it will only draw the ith contour, instead of all
+            //instead of writing contours we can now draw conPoly!
+            drawContours(img,conPoly,i,Scalar(255,0,255),1);
+
+            //to get the idea of number of contours and size
+            cout << "Number of contor on i " << i << " :" << conPoly[i].size() << endl;
+
+            //these two line will help us draw the square contour around the object we identified
+            boundRect[i] = boundingRect(conPoly[i]);
+            rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(0,0,0),2);
+
+            //now we will identify which object is which
+            int objCor = (int)conPoly[i].size(); //converting number of total corners
+
+            if (objCor == 3) {objType = "Tri";}
+            else if (objCor == 4) {objType = "Rect";}
+            else {objType = "Multi-angle";}
+
+            //adding the text on the bounding box
+            putText(img, objType, {boundRect[i].x, boundRect[i].y-5}, FONT_HERSHEY_DUPLEX, 0.50, Scalar(0,0,0), 1);
+
+        }
+    }
+
+}
 
 int main(){
 
-    string path = "Hand.jpg";
+    string path = "Shapes2.png";
     Mat img = imread(path);
-    Mat imgHSV,mask;
+    Mat imgGray, imgBlurr, imgEdge, imgDil;
+
+    //------------------- preprocessing of the image -----------------------//
+
+    //to detect shape first we will conver the image to gray scale, then  blurr the image, then we will do the edge detection
+    //then we will count the countour on that edges to find shape
     
-    //lets first - convert in HSV color space
-    cvtColor(img, imgHSV, COLOR_BGR2HSV);
+    cvtColor(img,imgGray, COLOR_BGR2GRAY);
+    GaussianBlur(imgGray, imgBlurr, Size(3,3),2,2);
+    Canny(imgBlurr,imgEdge,50,50);
 
-    int hmin = 0, smin = 110, vmin = 153;
-    int hmax = 19, smax = 240, vmax = 255;
+    //dialation of the edge detected image, this will fill the void within shape corners and joints for ease of shape detection
+    Mat kernel = getStructuringElement(MORPH_RECT, Size(3,3));
+    dilate(imgEdge, imgDil, kernel);
 
-    //since it is very hard to change 6 values of Scalar bounds, it is good idea to have track bars
-    //to change this values in real time to see how it is affecting the masks
+    getContours(imgDil,img);
 
-    //Here once we have converted image to HSV space, we will then use while loop to impelemt 
-    //track bar functionality
+    imshow("Image", img);
+    imshow("Image Gray", imgGray);
+    imshow("Image Blurr", imgBlurr);
+    imshow("Image Dialated", imgDil);
+    imshow("Image Edge detected", imgEdge);
 
-    //also we dont need to create a space bar again so defined out of the while loop
-
-    namedWindow("HSVTrackBars", (640,200)); //creating new windwow with size
-    createTrackbar("Hue Min", "HSVTrackBars",  &hmin, 179); //for hue it is max 179, for sat and val it is 255
-    createTrackbar("Hue Max", "HSVTrackBars",  &hmax, 179);
-    createTrackbar("Sat Min", "HSVTrackBars",  &smin, 255);
-    createTrackbar("Sat Max", "HSVTrackBars",  &smax, 255);
-    createTrackbar("Val Min", "HSVTrackBars",  &vmin, 255);
-    createTrackbar("Val Max", "HSVTrackBars",  &vmax, 255);
-
-    while(true){
-
-    //we will use inRange function to collect the color
-    //first we will define the HSV bound
-
-    Scalar lower(hmin, smin, vmin);
-    Scalar upper(hmax,smax, vmax);
-
-    inRange(imgHSV,lower,upper,mask); //upper and lower is the bound of color we are interested in
-
-    imshow("Mask",mask);
-    waitKey(1); // here we have to change it to 1 since it will be changing  real time
-    }
+    waitKey(0); // here we have to change it to 1 since it will be changing  real time
+    
 
 }
