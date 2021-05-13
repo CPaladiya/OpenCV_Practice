@@ -87,8 +87,8 @@ int main(){
     //then we will count the countour on that edges to find shape
     
     cvtColor(img,imgGray, COLOR_BGR2GRAY);
-    GaussianBlur(imgGray, imgBlurr, Size(3,3),2,2);
-    Canny(imgBlurr,imgEdge,50,50);
+    GaussianBlur(imgGray, imgBlurr, Size(3,3),3,0);
+    Canny(imgBlurr,imgEdge,25,75);
 
     //dialation of the edge detected image, this will fill the void within shape corners and joints for ease of shape detection
     Mat kernel = getStructuringElement(MORPH_RECT, Size(3,3));
