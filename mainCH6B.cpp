@@ -13,23 +13,14 @@ float h = 350; // height of the real card
 
 int main(){
 
-    string path = "Hand.jpg";
-    Mat img = imread(path);
-    Mat imgHSV,mask;
     
-    //lets first - convert in HSV color space
-    cvtColor(img, imgHSV, COLOR_BGR2HSV);
+    
+    VideoCapture vdo(0); 
+    Mat img; 
+    
 
-    int hmin = 0, smin = 110, vmin = 153;
-    int hmax = 19, smax = 240, vmax = 255;
-
-    //since it is very hard to change 6 values of Scalar bounds, it is good idea to have track bars
-    //to change this values in real time to see how it is affecting the masks
-
-    //Here once we have converted image to HSV space, we will then use while loop to impelemt 
-    //track bar functionality
-
-    //also we dont need to create a space bar again so defined out of the while loop
+    int hmin = 0, smin = 0, vmin = 0;
+    int hmax = 179, smax = 255, vmax = 255;
 
     namedWindow("HSVTrackBars", (640,200)); //creating new windwow with size
     createTrackbar("Hue Min", "HSVTrackBars",  &hmin, 179); //for hue it is max 179, for sat and val it is 255
@@ -38,11 +29,17 @@ int main(){
     createTrackbar("Sat Max", "HSVTrackBars",  &smax, 255);
     createTrackbar("Val Min", "HSVTrackBars",  &vmin, 255);
     createTrackbar("Val Max", "HSVTrackBars",  &vmax, 255);
-
+    
+    //since videos are series of frames we need to save all the frames and then play it one by one. 
     while(true){
+    
+    vdo.read(img); 
+    imshow("Gossip", img); 
 
-    //we will use inRange function to collect the color
-    //first we will define the HSV bound
+    Mat imgHSV,mask;
+    
+    //lets first - convert in HSV color space
+    cvtColor(img, imgHSV, COLOR_BGR2HSV);
 
     Scalar lower(hmin, smin, vmin);
     Scalar upper(hmax,smax, vmax);
