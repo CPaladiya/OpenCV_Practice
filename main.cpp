@@ -12,7 +12,7 @@ using namespace std;
 // we will have multiple masks for multiple colors we want to detect, for multiple colors we will use vector
 
 //vector of Hmin,Hmax,Smin,Smax,Vmin,Vmanx values for two different colors
-vector<vector<int>> myColors {{72,89,114,212,101,255},{90,109,208,255,172,255}}; //bright green and blue here
+vector<vector<int>> myColors {{45,97,65,255,105,255},{100,114,38,255,141,255}}; //bright green and blue here
 
 vector<Scalar> defColors{{0,255,0},{255,0,0}}; //BGR color definition for green and blue - colors to be displayed on the marker tip
 
@@ -58,9 +58,9 @@ Point getContours(Mat &imgDil){
             myPoint.y = boundRect[i].y;
 
 
-            drawContours(img,conPoly,i,Scalar(255,0,255),1);
+            //drawContours(img,conPoly,i,Scalar(255,0,255),1);
             //creating bounding box around the detected contour
-            rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(0,0,0),3);
+            //rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(0,0,0),3);
 
         }
     }
