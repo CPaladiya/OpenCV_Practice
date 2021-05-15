@@ -64,7 +64,18 @@ void getContours(Mat &imgDil, Mat &img){
             int objCor = (int)conPoly[i].size(); //converting number of total corners
 
             if (objCor == 3) {objType = "Tri";}
-            else if (objCor == 4) {objType = "Rect";}
+            else if (objCor == 4) {
+                
+                //this aspect ratio will help us determine if the rectangle we have is square using the width/height ratio
+                float aspRatio = (float)boundRect[i].width/(float)boundRect[i].height;
+                cout<<"Aspect Ratio of "<< boundRect[i] << "is :"<<aspRatio<<endl;
+                if (aspRatio>0.9 && aspRatio<1.1){
+                    objType = "Square";
+                }
+                else{
+                    objType = "Rect";
+                }
+                }
             else {objType = "Multi-angle";}
 
             //adding the text on the bounding box
