@@ -27,16 +27,17 @@ void getContours(Mat &imgDil, Mat &img){
     //detected if it has some number of area, smaller area migh be the noise
     //so to remove the noise of small areas we will run for loop througfh all the contours
 
+
+    //this will be exacly like contours, but it will only have corner points
+    vector<vector<Point>> conPoly(contours.size());
+    //creating a bounding box point values using conPoly
+    vector<Rect> boundRect(contours.size()); //note the data type here
+
     for (int i = 0; i< contours.size(); i++){
         
         double area = contourArea(contours[i]);
         cout << "Area of the i "<< i << " contour : "<< area << endl;
         //next we can create a filter where we only identify area if it is more than 1000
-
-        //this will be exacly like contours, but it will only have corner points
-        vector<vector<Point>> conPoly(contours.size());
-        //creating a bounding box point values using conPoly
-        vector<Rect> boundRect(contours.size()); //note the data type here
 
         //object type
         string objType;
@@ -83,7 +84,6 @@ void getContours(Mat &imgDil, Mat &img){
 
         }
     }
-
 }
 
 int main(){

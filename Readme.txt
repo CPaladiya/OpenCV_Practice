@@ -13,6 +13,6 @@ Ch6A : Color detction, adding the track bar, creating the mask
 
 Ch6B : Color Picker project using webcam
 
-Ch7 : Shape detection, drawing contours, bounding box and text on it
+Ch7 : Shape detection, drawing contours, reducing noice based on area of object, bounding box and text on it
 
 Ch8 : Marker drawing project
