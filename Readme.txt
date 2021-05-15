@@ -9,7 +9,9 @@ Ch4 : Creating shapes on Image and adding texts
 
 Ch5 : Warpin the image
 
-Ch6 : Color detction, adding the track bar, creating the mask
+Ch6A : Color detction, adding the track bar, creating the mask
+
+Ch6B : Color Picker project using webcam
 
 Ch7 : Shape detection, drawing contours, bounding box and text on it
 

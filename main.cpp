@@ -8,6 +8,10 @@ using namespace std;
 
 
 //---------------------------Project 1 : Realtime Marker Detection ------------------//
+
+// we will have multiple masks for multiple colors we want to detect, for multiple colors we will use vector
+
+vector<vector<int>> myColor;
 void findColors(Mat img){
 
     cvtColor(img, imgHSV, COLOR_BGR2HSV);
@@ -15,7 +19,7 @@ void findColors(Mat img){
     Scalar lower(hmin, smin, vmin);
     Scalar upper(hmax,smax, vmax);
 
-    inRange(imgHSV,lower,upper,mask);
+    inRange(imgHSV,lower,upper,mask); 
 
     
 
