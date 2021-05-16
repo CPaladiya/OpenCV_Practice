@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/mainCH6B.cpp" "CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o" "gcc" "CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o.d"
+  "/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/main.cpp" "CMakeFiles/OCV_RoadMap.dir/main.cpp.o" "gcc" "CMakeFiles/OCV_RoadMap.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

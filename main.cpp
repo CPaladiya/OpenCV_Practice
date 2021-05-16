@@ -14,7 +14,7 @@ using namespace std;
 //vector of Hmin,Hmax,Smin,Smax,Vmin,Vmanx values for two different colors
 vector<vector<int>> myColors {{45,97,65,255,105,255},{100,114,38,255,141,255}}; //bright green and blue here
 
-vector<Scalar> defColors{{0,255,0},{255,0,0}}; //BGR color definition for green and blue - colors to be displayed on the marker tip
+//vector<Scalar> defColors{{0,255,0},{255,0,0}}; //BGR color definition for green and blue - colors to be displayed on the marker tip
 
 Mat img; 
 vector<vector<int>> newPointsColor1; //ecah one will store {{x of circle ,y of circle ,color 0 = blue/1 = green}}
@@ -70,12 +70,17 @@ Point getContours(Mat &imgDil){
 }
 
 //this function is going to draw the circle on the tip, it accepts values of color and points of center for circle
-void drawOnTip (vector<vector<int>> newPoints, vector<Scalar> defColors){
+void drawOnTip (vector<vector<int>> newPoints, int defColors){
 
-    for(int i = 0; i<newPoints.size(); i++){
-            circle(img,Point(newPoints[i][0],newPoints[i][1]),10,defColors[newPoints[i][2]],FILLED);
+    if (defColors == 0){
+        for(int i = 0; i<newPoints.size(); i++){
+                circle(img,Point(newPoints[i][0],newPoints[i][1]),1+i,Scalar(0,100+i*15,0),FILLED);
+        }
     }
-
+    else
+        for(int i = 0; i<newPoints.size(); i++){
+                circle(img,Point(newPoints[i][0],newPoints[i][1]),1+i,Scalar(100+i*5,0,0),FILLED);
+        }
 }
 
 void findColors(Mat &img){
@@ -95,20 +100,20 @@ void findColors(Mat &img){
 
         if(myPoint.x!=0 && myPoint.y!=0 && i==0){
             newPointsColor1.push_back({myPoint.x, myPoint.y, i}); //global variable
-            if (newPointsColor1.size()>9){
+            if (newPointsColor1.size()>12){ //we will have 12 points on tip tails, removing the old points, latest 12 is only allowed
                 newPointsColor1.erase(newPointsColor1.begin());
             }
         }
 
-        if(myPoint.x!=0 && myPoint.y!=0 && i==0){
+        if(myPoint.x!=0 && myPoint.y!=0 && i==1){
             newPointsColor2.push_back({myPoint.x, myPoint.y, i}); //global variable
-            if (newPointsColor2.size()>9){
+            if (newPointsColor2.size()>12){ //we will have 12 points on tip tails, removing the old points, latest 12 is only allowed
                 newPointsColor2.erase(newPointsColor2.begin());
             }
         }
     }
-    drawOnTip(newPointsColor1,defColors);
-    drawOnTip(newPointsColor2,defColors);
+    drawOnTip(newPointsColor1,0); //0 for Green color
+    drawOnTip(newPointsColor2,1); //1 for Blue color
 }
 
 
