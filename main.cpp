@@ -12,7 +12,7 @@ using namespace std;
 // we will have multiple masks for multiple colors we want to detect, for multiple colors we will use vector
 
 //vector of Hmin,Hmax,Smin,Smax,Vmin,Vmanx values for two different colors
-vector<vector<int>> myColors {{45,97,65,255,105,255},{100,114,38,255,141,255}}; //bright green and blue here
+vector<vector<int>> myColors {{45,97,65,255,105,255},{94,128,35,255,129,230}}; //bright green and blue here
 
 //vector<Scalar> defColors{{0,255,0},{255,0,0}}; //BGR color definition for green and blue - colors to be displayed on the marker tip
 
@@ -74,12 +74,14 @@ void drawOnTip (vector<vector<int>> newPoints, int defColors){
 
     if (defColors == 0){
         for(int i = 0; i<newPoints.size(); i++){
-                circle(img,Point(newPoints[i][0],newPoints[i][1]),1+i,Scalar(0,100+i*15,0),FILLED);
+                //here radius of the circle will keep increasing as we go near the tip and color will brighten as well
+                circle(img,Point(newPoints[i][0],newPoints[i][1]),1+i,Scalar(0,125+i*15,0),FILLED);
         }
     }
     else
         for(int i = 0; i<newPoints.size(); i++){
-                circle(img,Point(newPoints[i][0],newPoints[i][1]),1+i,Scalar(100+i*5,0,0),FILLED);
+                //here radius of the circle will keep increasing as we go near the tip and color will brighten as well
+                circle(img,Point(newPoints[i][0],newPoints[i][1]),1+i,Scalar(125+i*15,0,0),FILLED);
         }
 }
 
