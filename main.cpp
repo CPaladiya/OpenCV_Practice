@@ -17,7 +17,8 @@ vector<vector<int>> myColors {{45,97,65,255,105,255},{100,114,38,255,141,255}}; 
 vector<Scalar> defColors{{0,255,0},{255,0,0}}; //BGR color definition for green and blue - colors to be displayed on the marker tip
 
 Mat img; 
-vector<vector<int>> newPoints; //ecah one will store {{x of circle ,y of circle ,color 0 = blue/1 = green}}
+vector<vector<int>> newPointsColor1; //ecah one will store {{x of circle ,y of circle ,color 0 = blue/1 = green}}
+vector<vector<int>> newPointsColor2; //separate matrix for each color identified
 
 Point getContours(Mat &imgDil){
 
@@ -83,7 +84,6 @@ void findColors(Mat &img){
 
     cvtColor(img, imgHSV, COLOR_BGR2HSV);
 
-
     for(int i = 0; i<myColors.size(); i++){
 
         Scalar lower(myColors[i][0], myColors[i][2], myColors[i][4]); //format Hmin, Smin, Vmin
@@ -93,11 +93,22 @@ void findColors(Mat &img){
         //imshow(to_string(i), mask);
         Point myPoint = getContours(mask);
 
-        if(myPoint.x!=0 && myPoint.y!=0){
-            newPoints.push_back({myPoint.x, myPoint.y, i}); //global variable
+        if(myPoint.x!=0 && myPoint.y!=0 && i==0){
+            newPointsColor1.push_back({myPoint.x, myPoint.y, i}); //global variable
+            if (newPointsColor1.size()>9){
+                newPointsColor1.erase(newPointsColor1.begin());
+            }
+        }
+
+        if(myPoint.x!=0 && myPoint.y!=0 && i==0){
+            newPointsColor2.push_back({myPoint.x, myPoint.y, i}); //global variable
+            if (newPointsColor2.size()>9){
+                newPointsColor2.erase(newPointsColor2.begin());
+            }
         }
     }
-    drawOnTip(newPoints,defColors);
+    drawOnTip(newPointsColor1,defColors);
+    drawOnTip(newPointsColor2,defColors);
 }
 
 

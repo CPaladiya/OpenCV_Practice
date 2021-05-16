@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/OCV_RoadMap.dir/main.cpp.o"
-  "CMakeFiles/OCV_RoadMap.dir/main.cpp.o.d"
+  "CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o"
+  "CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o.d"
   "OCV_RoadMap"
   "OCV_RoadMap.pdb"
 )

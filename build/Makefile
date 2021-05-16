@@ -129,29 +129,29 @@ OCV_RoadMap/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/build
 .PHONY : OCV_RoadMap/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+mainCH6B.o: mainCH6B.cpp.o
+.PHONY : mainCH6B.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/main.cpp.o
-.PHONY : main.cpp.o
+mainCH6B.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o
+.PHONY : mainCH6B.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+mainCH6B.i: mainCH6B.cpp.i
+.PHONY : mainCH6B.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/main.cpp.i
-.PHONY : main.cpp.i
+mainCH6B.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.i
+.PHONY : mainCH6B.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+mainCH6B.s: mainCH6B.cpp.s
+.PHONY : mainCH6B.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/main.cpp.s
-.PHONY : main.cpp.s
+mainCH6B.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OCV_RoadMap.dir/build.make CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.s
+.PHONY : mainCH6B.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... OCV_RoadMap"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... mainCH6B.o"
+	@echo "... mainCH6B.i"
+	@echo "... mainCH6B.s"
 .PHONY : help
 
 

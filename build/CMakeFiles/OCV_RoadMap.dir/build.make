@@ -69,28 +69,28 @@ include CMakeFiles/OCV_RoadMap.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/OCV_RoadMap.dir/flags.make
 
-CMakeFiles/OCV_RoadMap.dir/main.cpp.o: CMakeFiles/OCV_RoadMap.dir/flags.make
-CMakeFiles/OCV_RoadMap.dir/main.cpp.o: ../main.cpp
-CMakeFiles/OCV_RoadMap.dir/main.cpp.o: CMakeFiles/OCV_RoadMap.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/OCV_RoadMap.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OCV_RoadMap.dir/main.cpp.o -MF CMakeFiles/OCV_RoadMap.dir/main.cpp.o.d -o CMakeFiles/OCV_RoadMap.dir/main.cpp.o -c /home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/main.cpp
+CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o: CMakeFiles/OCV_RoadMap.dir/flags.make
+CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o: ../mainCH6B.cpp
+CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o: CMakeFiles/OCV_RoadMap.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o -MF CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o.d -o CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o -c /home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/mainCH6B.cpp
 
-CMakeFiles/OCV_RoadMap.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OCV_RoadMap.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/main.cpp > CMakeFiles/OCV_RoadMap.dir/main.cpp.i
+CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/mainCH6B.cpp > CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.i
 
-CMakeFiles/OCV_RoadMap.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OCV_RoadMap.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/main.cpp -o CMakeFiles/OCV_RoadMap.dir/main.cpp.s
+CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cpaladiya/My_prog_projects/11_OpenCV_RoadMap/mainCH6B.cpp -o CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.s
 
 # Object files for target OCV_RoadMap
 OCV_RoadMap_OBJECTS = \
-"CMakeFiles/OCV_RoadMap.dir/main.cpp.o"
+"CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o"
 
 # External object files for target OCV_RoadMap
 OCV_RoadMap_EXTERNAL_OBJECTS =
 
-OCV_RoadMap: CMakeFiles/OCV_RoadMap.dir/main.cpp.o
+OCV_RoadMap: CMakeFiles/OCV_RoadMap.dir/mainCH6B.cpp.o
 OCV_RoadMap: CMakeFiles/OCV_RoadMap.dir/build.make
 OCV_RoadMap: /usr/local/lib/libopencv_gapi.so.4.5.2
 OCV_RoadMap: /usr/local/lib/libopencv_highgui.so.4.5.2
