@@ -15,4 +15,4 @@ Ch6B : Color Picker project using webcam
 
 Ch7 : Shape detection, drawing contours, reducing noice based on area of object, bounding box and text on it
 
-Ch8/main.cpp : Marker drawing project
+Ch8/main.cpp : Marker drawing project : The Shooting Star
